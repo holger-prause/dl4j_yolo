@@ -59,6 +59,11 @@ public class YOLOModel {
             throw new Error("Not able to load image from: " + input.getAbsolutePath(), e);
         }
 
+        //warm up the model
+        for(int i =0; i< 10; i++) {
+            yoloModel.outputSingle(img);
+        }
+
         long start = System.currentTimeMillis();
         INDArray output = yoloModel.outputSingle(img);
         long end = System.currentTimeMillis();
